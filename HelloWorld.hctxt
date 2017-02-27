@@ -1,0 +1,23 @@
+#Start
+if InFilter InFilter+7 within 00000001 ffffffff run TextOut and trm
+if messageCheck equals 00 run ioMessage
+run #Start //loop
+trm
+
+InFilter#DeviceInput+7
+
+messageCheck
+00
+
+ioMessage
+mov messageCheck 01
+out colselect d`0
+out rowselect d`0
+out text t`Press any key
+trm
+
+TextOut
+out colselect d`0
+out rowselect d`1
+out text t`Hello World
+trm
