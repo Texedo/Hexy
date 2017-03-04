@@ -1,6 +1,10 @@
 #Start
-if InFilter InFilter+7 within 00000001 ffffffff run TextOut and trm
-if messageCheck equals 00 run ioMessage
+if InFilter to InFilter+7 within 00000001 ffffffff 
+  run TextOut 
+  and 
+    trm
+if messageCheck equals 00 
+  run ioMessage
 run #Start //loop
 trm
 
