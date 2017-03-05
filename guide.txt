@@ -1,0 +1,67 @@
+h1 - varied-byte value
+h2 - varied-byte address update 
+
+h = hexadecimal digit
+First hex digit describes opcode (add, sub, etc.)
+
+instruction opcode resides within upper 4 bits of the opcode byte
+
+0000:0: trm
+// move to next active thread, decrement thread count
+
+0001:1:cpycont  <h2>-<h2> to <h2>
+// addressLengthhex, addressOffsethex(es)
+
+0010:2: out h2 is length of output
+
+0011:3:runcont <h2>
+
+0100:4:
+
+0101:5:subcont <operand> low 4 bits specify target increment
+
+0110:6: x86 instruction | at <h2>, end instructions with jmp loc_start
+	update thread before you go
+VIRTUAL HEXY ONLY
+
+0111:7:addcont <operand> low 4 bits specify target increment
+
+1000:8: target,   targets <h2>
+
+1001:9:metmovcont <h2>-<h2> <op>
+
+1010:A:  ifequal if region <h2>-<h2> value equals <op amount of BYTE> <op>, do instruction, continue, regardless
+  lower 4 bits of opcode bytes specify instructions to skip if NOT
+  if lower 4 bits = 0h, an <h2> code in the following byte specifies a byte to jump to
+  
+1011:B:metgrabcont | ifwithin if region <h2>-<h2> value is within <op amount of BYTE> <op>-<op>, do instruction, continue, regardless
+  lower 4 bits of opcode bytes specify instructions to skip if NOT
+  if lower 4 bits = 0h, an <h2> code in the following byte specifies a byte to jump to
+  
+1100:C: skip | increases target by amount specified by lower 4 bits
+amount is 0 for holding target
+
+1101:D:metsubcont<h2> <operand>
+
+1110:E: target | update target by <h2>
+NOTE:originally longskip
+
+1111:F:metaddcont <h2> <operand>
+
+First byte:
+  First(higher) 4 bits: hexadecimal value
+  
+  
+ 0 1 2 3 4 5 6 7 8 9 a b c d e f ;16 bytes
+31640000000000000000000000000000 ;0
+run 64 // run opens a new thread
+
+00000000000000000000000000000000 ;1
+00000000000000000000000000000000 ;2
+00000000000000000000000000000000 ;3
+00000000000000000000000000000000 ;4
+00000000000000000000000000000000 ;5
+
+00000000a10100010131689120012001 ;6
+if 1_00 to 1_01 equals 3168
+  mov 20 01 // would  a comma be nessecary? NAH
