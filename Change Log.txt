@@ -1,0 +1,10 @@
+For changes, updates, and keeping track of current objectives
+
+v0.0.1 UNFINISHED
+-instruction changes
+  -metaddcont and metsubcont removed
+    -replaced with MULtiply and DIVide
+      -deciding on operation type (floating point or fixed point)
+      -must be binary compatible
+-working on instruction mapping
+  -graphical ISA representation
