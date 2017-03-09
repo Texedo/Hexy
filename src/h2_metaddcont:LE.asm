@@ -1,3 +1,5 @@
+;REPLACED WITH MULTIPLY; WILL BE RESERVED AS REFERENCE
+
 loc_metaddcont:
 sub al,f0 ; f is the value of metaddcont
 test al,08
