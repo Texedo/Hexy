@@ -1,0 +1,23 @@
+
+//loc_CT is on an active thread (otherwise you wouldn't have gotten here)
+
+inc thread
+if 8th byte is ff (outside the range of memory jmp to dead_thread
+otherwise jmp to loc_start and rerun the code
+
+dead_check:
+if hits a dead thread you've reached the last thread, but you'll have to patch the terminated threads before looping to the first thread again
+
+previous thread must have been a running thread
+	record previous thread in a register (val_top)
+	record first dead thread (Dbase)
+	count running threads after first dead thread(s)
+	record the last of this running set in another register val_Ctop
+	move each running thread to the first open dead thread Cbottom over Dbase
+	subtract Ctop from top
+	if outcome is zero all threads have been fixed SO
+		reset loc_CT
+		jmp to loc_start
+
+	if not repeat the process again until the outcome is zero
+

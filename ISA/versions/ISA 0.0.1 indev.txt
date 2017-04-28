@@ -1,0 +1,45 @@
+<thread amount (multilength variable based on device's possible bytes)> <current thread>
+
+0000:0: trm
+// move to next active thread, decrement thread count
+
+0001:1:cpycont  <h2>-<h2> to <h2>
+// addressLengthhex, addressOffsethex(es)
+
+0010:2: out h2 is length of output
+
+0011:3:run <h2>
+
+0100:4:
+
+0101:5:sub <h1 = target offset (no offset if lower 4 bits of op = 0)> <operand length BYTE> <operand>
+
+0110:6: x86 instruction | at <h2>, end instructions with jmp loc_start
+	update thread before you go
+VIRTUAL HEXY ONLY
+
+0111:7:add <h1 = target offset (no offset if lower 4 bits of op = 0)> <operand length BYTE> <operand>
+
+1000:8: target,   targets <h2> | DEPRECIATED
+
+1001:9:mov <h2>-<h2> <op>
+
+1010:A:  ifequal if region <h2>-<h2> value equals <op amount of> <op>, do instruction, continue, regardless
+	lower 4 bits of opcode bytes specify instructions to skip if NOT
+	if lower 4 bits = 0h, an <h2> code in the following byte specifies a byte to jump to
+
+1011:B:ifwithin if region <h2>-<h2> value is within <op amount> <op>-<op>, do instruction, continue, regardless
+	lower 4 bits of opcode bytes specify instructions to skip if NOT
+	if lower 4 bits = 0h, an <h2> code in the following byte specifies a byte to jump to
+
+1100:C: skip | increases target by amount specified by lower 4 bits
+amount is 0 for holding target
+
+1101:D:div | <target h2> <operand length BYTE> <operand> <remainder amount 
+
+1110:E: target | update target by <h2>
+NOTE:originally longskip
+
+1111:F:mul | <target h2> <operand length BYTE> <operand>
+
+trm(esc), cpy, run, sub, add, x86, target[D], mov, ifequal, ifwithin, skip, div, mul

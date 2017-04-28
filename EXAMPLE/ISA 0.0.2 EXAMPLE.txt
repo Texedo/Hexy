@@ -1,0 +1,12 @@
+Prog
+add h%0820,h%03
+if h%0820 equals 03
+mov h%0100,h%01
+if h%0100 equals 01
+run h%0101 //goto
+	and
+trm
+
+addr%0101
+cpy h%0109,%ins1
+trm

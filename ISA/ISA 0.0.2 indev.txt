@@ -1,0 +1,57 @@
+HCv1
+esc	run	cpy	mov
+0	1	2	3
+add	sub	mul	div
+4	5	6	7
+ifwit	ifeq		
+8	9	a	b
+			out
+c	d	e	f
+
+h2 target mods' values remain in the lower 4 bits of the h2 byte.
+The higher four bits specify the target bit of the target byte.
+000(bits) for target mods(h2),0-7 correspond to the actual value. 000(bits) is used for the max value(8).
+The highest of the lower 4 bits indicate if there will be another h2 set following the current;
+	of which will indicate a higher set of 64 bit sets of bytes and whether another h2 set is needed.
+
+ESC:
+OP:HIGH0000,LOW0000(type set directory)
+h%00 trm: terminates thread
+h%01 mode: changes thread's processor mode
+	00: default Hexy big endian
+	01: little endian Hexy(translates to threads run from this thread)
+		(intended for high speed x86 virtualization)
+
+RUN:OP:0000HIGH, H2:0000LOW open new thread at h2
+	(can specify higher set or separate device compatible with Hexy instructions)
+
+
+CPY:OP:HIGH, BITh2 ... BITh2, operand
+
+
+MOV:
+OP:HIGH0000,BITh2 ... BITh2,operand(full bytes even if bits are specified)
+
+ADD:
+OP:HIGH,LOWh2 ... h2, operand
+
+SUB:
+OP:HIGH,LOWh2 ... h2, operand
+
+MUL:
+OP:HIGH,LOWh2 ... h2, operand
+
+DIV:
+OP:HIGH,LOWh2 ... h2, operand
+
+IFWIT:800208000103ff010b //if 0800 ... 03 equals ff
+				otherwise, skip 0b(11) bytes of instructions
+OP:HIGH0000,BITh2 ... BITh2, operand
+	skip h2 if false
+
+IFEQL:
+OP:HIGH0000, BITh2 ... BITh2,operand
+	skip h2 if false
+
+OUT:
+OP:HIGH0000 LOW0000

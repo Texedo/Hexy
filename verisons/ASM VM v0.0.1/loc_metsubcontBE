@@ -1,0 +1,269 @@
+loc_metsubcont:
+
+sub al,d0
+test al,0f
+jae loc_outStart
+test al,08
+jae 8B_metsubcont
+test al,07
+jae 7B_metsubcont
+test al,06
+jae 6B_metsubcont
+test al,05
+jae 5B_metsubcont
+test al,04
+jae 4B_metsubcont
+test al,03
+jae 3B_metsubcont
+test al,02
+jae 2B_metsubcont
+test al,01
+jae 1B_metsubcont
+test al,00
+jae loc_subcont
+
+;al = HC code - F0
+;rbx = loc_CT
+;rcx = loc_TA
+ 
+8B_metsubcont:
+
+add cl,01 ;highest h2 digit (big Endian style)
+add bl,0f ;highest target digit
+mov al,[rcx]
+mov [rbx],al
+;F
+
+add cl,01
+sub bl,01 
+mov al,[rcx]
+mov [rbx],al
+;E
+
+add cl,01
+sub bl,01 
+mov al,[rcx]
+mov [rbx],al
+;D
+
+add cl,01
+sub bl,01 
+mov al,[rcx]
+mov [rbx],al
+;C
+
+add cl,01
+sub bl,01 
+mov al,[rcx]
+mov [rbx],al
+;B
+
+add cl,01
+sub bl,01 
+mov al,[rcx]
+mov [rbx],al
+;A
+
+add cl,01 
+sub bl,01 
+mov al,[rcx]
+mov [rbx],al
+;9
+
+add cl,01 ;last h2 digit
+sub bl,01 ;first target digit
+mov al,[rcx]
+mov [rbx],al
+;8
+jmp op_sub
+
+
+7B_metsubcont:
+
+add cl,01 ;highest h2 digit (big Endian style)
+add bl,0e ;highest target digit
+mov al,[rcx]
+mov [rbx],al
+;F
+
+add cl,01
+sub bl,01 
+mov al,[rcx]
+mov [rbx],al
+;D
+
+add cl,01
+sub bl,01 
+mov al,[rcx]
+mov [rbx],al
+;C
+
+add cl,01
+sub bl,01 
+mov al,[rcx]
+mov [rbx],al
+;B
+
+add cl,01
+sub bl,01 
+mov al,[rcx]
+mov [rbx],al
+;A
+
+add cl,01 
+sub bl,01 
+mov al,[rcx]
+mov [rbx],al
+;9
+
+add cl,01 ;last h2 digit
+sub bl,01 ;first target digit
+mov al,[rcx]
+mov [rbx],al
+;8
+jmp op_sub
+
+
+6B_metsubcont:
+
+add cl,01 ;highest h2 digit (big Endian style)
+add bl,0d ;highest target digit
+mov al,[rcx]
+mov [rbx],al
+;F
+
+add cl,01
+sub bl,01 
+mov al,[rcx]
+mov [rbx],al
+;C
+
+add cl,01
+sub bl,01 
+mov al,[rcx]
+mov [rbx],al
+;B
+
+add cl,01
+sub bl,01 
+mov al,[rcx]
+mov [rbx],al
+;A
+
+add cl,01 
+sub bl,01 
+mov al,[rcx]
+mov [rbx],al
+;9
+
+add cl,01 ;last h2 digit
+sub bl,01 ;first target digit
+mov al,[rcx]
+mov [rbx],al
+;8
+jmp op_sub
+
+5B_metsubcont:
+
+add cl,01 ;highest h2 digit (big Endian style)
+add bl,0c ;highest target digit
+mov al,[rcx]
+mov [rbx],al
+;F
+
+add cl,01
+sub bl,01 
+mov al,[rcx]
+mov [rbx],al
+;B
+
+add cl,01
+sub bl,01 
+mov al,[rcx]
+mov [rbx],al
+;A
+
+add cl,01 
+sub bl,01 
+mov al,[rcx]
+mov [rbx],al
+;9
+
+add cl,01 ;last h2 digit
+sub bl,01 ;first target digit
+mov al,[rcx]
+mov [rbx],al
+;8
+jmp op_sub
+
+4B_metsubcont:
+
+add cl,01 ;highest h2 digit (big Endian style)
+add bl,0b ;highest target digit
+mov al,[rcx]
+mov [rbx],al
+;F
+
+add cl,01
+sub bl,01 
+mov al,[rcx]
+mov [rbx],al
+;A
+
+add cl,01 
+sub bl,01 
+mov al,[rcx]
+mov [rbx],al
+;9
+
+add cl,01 ;last h2 digit
+sub bl,01 ;first target digit
+mov al,[rcx]
+mov [rbx],al
+;8
+jmp op_sub
+
+3B_metsubcont:
+
+add cl,01 ;highest h2 digit (big Endian style)
+add bl,0a ;highest target digit
+mov al,[rcx]
+mov [rbx],al
+;F
+
+add cl,01 
+sub bl,01 
+mov al,[rcx]
+mov [rbx],al
+;9
+
+add cl,01 ;last h2 digit
+sub bl,01 ;first target digit
+mov al,[rcx]
+mov [rbx],al
+;8
+jmp op_sub
+
+2B_metsubcont:
+
+add cl,01 ;highest h2 digit (big Endian style)
+add bl,08 ;highest target digit
+mov al,[rcx]
+mov [rbx],al
+;F
+
+add cl,01 ;last h2 digit
+sub bl,01 ;first target digit
+mov al,[rcx]
+mov [rbx],al
+;8
+jmp op_sub
+
+1B_metsubcont:
+
+add cl,01 ;highest h2 digit (big Endian style)
+add bl,0f ;highest target digit
+mov al,[rcx]
+mov [rbx],al
+;F
+jmp op_sub

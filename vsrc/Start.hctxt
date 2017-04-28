@@ -1,0 +1,79 @@
+esc little_endian
+threadBase //describes the base of the thread handler variables
+// threads reside below threadBase
+
+threadCount#qword #within threadBase
+0000000000000001
+
+currentThread#qword #within threadBase
+0000000000000000
+
+terminatedThread#qword #within threadBase
+/* these are the default boundaries of the threaders.
+Setup#enter
+// make sure all threaders are set to default
+mov threadCount,0000000000000001
+mov currentThread,0000000000000000 //byte below threadBase
+mov terminatedThread,0000000000000000
+Start
+if currentThread equals threadCount
+	mov currentThread,0000000000000000 //byte below threadBase
+
+if @$currentThread within 00 ... 0f
+	goto escINS
+if @$currentThread within 10 ... 1f
+	goto runINS
+if @$currentThread within 20 ... 2f
+	goto cpyINS
+if @$currentThread within 30 ... 3f
+	goto movINS
+if @$currentThread within 40 ... 4f
+	goto addINS
+if @$currentThread within 50 ... 5f
+	goto subINS
+if @$currentThread within 60 ... 6f
+	goto mulINS
+if @$currentThread within 70 ... 7f
+	goto divINS
+if @$currentThread within 80 ... 8f
+	goto ifwitINS
+if @$currentThread within 90 ... 9f
+	goto ifeql
+
+// values a-d undecided and reserved
+if @$currentThread within e0 ... ef
+	goto x86INS
+if @$currentThread within f0 ... ff
+goto outINS
+
+insHolder#qword
+
+cpyINS
+goto Start
+
+movINS
+goto Start
+
+addINS
+goto Start
+
+subINS
+goto Start
+
+mulINS
+goto Start
+
+divINS
+goto Start
+
+ifwitINS
+goto Start
+
+ifeqlINS
+goto Start
+
+x86INS
+goto Start
+
+outINS
+goto Start

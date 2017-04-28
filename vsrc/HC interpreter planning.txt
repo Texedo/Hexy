@@ -1,0 +1,10 @@
+thread count
+	64 bit amount
+current thread
+	64 bit var
+
+thread tracker
+	64 bit locations of threads
+terminated threads
+	64 bit amount
+		64 bit locations

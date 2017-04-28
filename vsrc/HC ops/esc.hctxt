@@ -1,0 +1,12 @@
+escINS
+if byte@$currentThread bits%1 ... 4 equals b%0000
+	run trmINS
+if byte@$currentThread bits%1 ... 4 equals b%0001
+	out text, 
+little endian mode
+64bit x86 Virtual Boot Machine by TekZ
+v0.0.2
+
+Please see GitHub post for additional instructions
+https://github.com/Techzombie12345/Hexy
+%end
